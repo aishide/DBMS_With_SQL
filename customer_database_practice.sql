@@ -228,3 +228,6 @@ Berlin	1
 SELECT City, COUNT(CustomerID) AS NumberOfCustomers
 FROM Customers
 GROUP BY City;
+
+//Covered  : 
+//intro , syntax, select , select distinct , where , orderby , and , or , not , insert into , null values , update , delete , select top , aggregate functions , min() , max() , avg() , sum() , count() , like , wildcards, in , between , alias , join ,inner join , left joinn , right join , self join , cross join , self join , full join , union , union all , ,group by
