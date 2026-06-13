@@ -155,3 +155,59 @@ OR
 ALTER TABLE Employees
 ALTER Salary SET DEFAULT 30000;
 
+IF FROM SCRATCH :
+
+CREATE TABLE Employees (
+    EmployeeID INT,
+    EmployeeName VARCHAR(100),
+    Salary INT DEFAULT 30000
+);
+
+
+/*
+Create a table Users with the following requirements:
+
+UserID → INT, PRIMARY KEY, AUTO_INCREMENT
+Username → VARCHAR(50), NOT NULL, UNIQUE
+Age → INT, must be at least 13
+Country → VARCHAR(50), defaults to 'India'
+
+Write the complete CREATE TABLE statement. This combines multiple concepts into one question.
+*/
+
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    Age INT CHECK (Age >= 13),
+    Country VARCHAR(50) DEFAULT 'India'
+);
+
+
+/*
+You have two tables:
+
+Customers
+CustomerID
+CustomerName
+
+Create an Orders table with these requirements:
+
+OrderID → INT, PRIMARY KEY, AUTO_INCREMENT
+CustomerID → INT, Foreign Key referencing Customers(CustomerID)
+OrderDate → defaults to the current date
+Amount → DECIMAL(10,2), must be greater than 0
+Status → VARCHAR(20), defaults to 'Pending'
+
+Write the complete CREATE TABLE Orders statement.
+
+This combines almost everything you've learned. Take your time.
+*/
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    OrderDate DATE DEFAULT CURRENT_DATE,
+    Amount DECIMAL(10,2) CHECK (Amount > 0),
+    Status VARCHAR(20) DEFAULT 'Pending',
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
