@@ -90,3 +90,68 @@ CREATE TABLE Employees (
     FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
 );
 
+/*
+Create a table Products with:
+
+ProductID → INT, Primary Key, and AUTO_INCREMENT
+ProductName → VARCHAR(100), NOT NULL
+Price → DECIMAL(10,2) with a CHECK constraint that ensures the price is greater than 0
+
+Write the complete CREATE TABLE statement.
+*/
+
+CREATE TABLE Products (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(100) NOT NULL,
+    Price DECIMAL(10,2),
+    CHECK (Price > 0)
+);
+
+
+/*
+You have an existing table:
+
+Students
+---------
+StudentID
+StudentName
+Age
+
+Write the SQL statement to add a CHECK constraint so that Age must always be 18 or greater.
+
+(Use ALTER TABLE.)
+*/
+
+ALTER TABLE Students
+ADD CHECK (Age >= 18);
+
+OR 
+
+ALTER TABLE Students
+ADD CONSTRAINT CHK_Age
+CHECK (Age >= 18);
+
+
+/*
+You have an existing table:
+
+Employees
+---------
+EmployeeID
+EmployeeName
+Salary
+
+Write a SQL statement to add a DEFAULT constraint so that Salary defaults to 30000 when no value is provided.
+
+(Use ALTER TABLE.)
+*/
+
+ALTER TABLE Employees
+ADD CONSTRAINT DF_Salary
+DEFAULT 30000 FOR Salary;
+
+OR 
+
+ALTER TABLE Employees
+ALTER Salary SET DEFAULT 30000;
+
