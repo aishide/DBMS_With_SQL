@@ -144,3 +144,151 @@ If OrderID is a PRIMARY KEY, then it can never be NULL, so in practice both retu
 
 If it contains NULL value then that is not counted.
 
+/*
+What is the difference between a prepared statement and a parameter?
+
+Explain:
+
+What is a parameter?
+What is a prepared statement?
+How do they work together to prevent SQL injection?
+
+This is a conceptual question, so answer in your own words.
+*/
+
+A parameter is a placeholder for a value that will be supplied later.
+
+For example:
+
+SELECT * FROM Customers
+WHERE CustomerID = ?;
+
+Here, ? is a parameter. It doesnt contain a value yet. Later, the application might bind 101 to it.
+
+So if the user enters 101, the database treats it as:
+
+CustomerID = 101
+
+If the user enters:
+
+' OR '1'='1
+
+the database treats it as the literal string "' OR '1'='1" and not as SQL code.
+
+
+
+A prepared statement is a SQL query that is compiled or prepared first, before the actual values are inserted.
+
+For example:
+
+SELECT * FROM Customers
+WHERE CustomerID = ?;
+
+The database prepares this query structure once.
+
+Later, when a value is provided, it simply fills in the placeholder without changing the SQL structure.
+
+
+
+Suppose a login query is written unsafely:
+
+SELECT * FROM Users
+WHERE Username = '" + username + "'
+AND Password = '" + password + "';
+
+If the user enters:
+
+' OR '1'='1
+
+the final query becomes:
+
+SELECT * FROM Users
+WHERE Username = '' OR '1'='1'
+AND Password = '';
+
+Since '1'='1' is always true, the attacker may bypass authentication.
+
+With a prepared statement and parameters:
+SELECT * FROM Users
+WHERE Username = ?
+AND Password = ?;
+
+The database prepares the SQL first and then binds the users input to the parameters.
+
+If the user enters:
+
+' OR '1'='1
+
+it is treated as plain text, not executable SQL.
+
+So the database searches for a username literally equal to:
+
+' OR '1'='1
+
+instead of changing the logic of the query.
+
+
+
+
+Parameter (?) → a placeholder where a value will go.
+Prepared statement → the precompiled SQL template that contains those placeholders.
+Together → they separate SQL code from user data, which is why they are one of the most effective defenses against SQL injection.
+
+A prepared statement is the blueprint; parameters are the values that fill in the blanks.
+
+
+/*
+You have the following table:
+
+ProductID	ProductName	Price
+1	Pen	10
+2	Pencil	5
+3	Eraser	15
+
+You create a view:
+
+CREATE VIEW CheapProducts AS
+SELECT ProductName, Price
+FROM Products
+WHERE Price < 10;
+Questions:
+What data will CheapProducts contain initially?
+If the price of Pen is updated from 10 to 8 in the Products table, will CheapProducts automatically reflect this change? Why or why not?
+*/
+
+It will have the columns ProductName and Price and contain:
+
+ProductName	Price
+Pencil	5
+
+
+A view does not store a separate copy of the data (unless its a materialized view)
+
+
+When you run:
+
+SELECT * FROM CheapProducts;
+
+the database executes:
+
+SELECT ProductName, Price
+FROM Products
+WHERE Price < 10;
+
+using the current data in Products.
+
+After updating Pen to 8:
+
+ProductName	Price
+Pen	8
+Pencil	5
+
+the view will automatically show:
+
+ProductName	Price
+Pen	8
+Pencil	5
+
+No need to recreate the view.
+
+
