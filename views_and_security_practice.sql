@@ -292,3 +292,46 @@ Pencil	5
 No need to recreate the view.
 
 
+/*
+Consider these SQL data types:
+
+INT
+DECIMAL(8,2)
+DATE
+VARCHAR(100)
+BOOLEAN
+
+For each one, give one example value that could be stored in that data type.
+
+For example:
+
+INT → 25
+*/
+
+int → 25
+DECIMAL(8,2) → 12345.67
+DATE → 2023-10-15
+VARCHAR(100) → "John Doe"
+BOOLEAN → TRUE
+
+/*
+SELECT UPPER(CustomerName)
+FROM Customers;
+Keyword or function?
+What does it do?
+Output for:
+Alice
+Bob
+charlie
+*/
+
+UPPER()
+
+is a function, and:
+
+Alice   → ALICE
+Bob     → BOB
+charlie → CHARLIE
+
+
+
