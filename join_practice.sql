@@ -131,3 +131,48 @@ SELECT C.CustomerName, O.Amount
 FROM Customers C
 FULL JOIN Orders O
 ON C.CustomerID = O.CustomerID;
+
+
+
+
+
+Some databases (notably MySQL) historically did not support FULL JOIN directly.
+In those cases, people simulate it with:
+
+LEFT JOIN
+UNION
+RIGHT JOIN
+
+
+
+
+/*
+Tables:
+
+Employees
+EmployeeID	EmployeeName	ManagerID
+1	Alice	NULL
+2	Bob	1
+3	Charlie	1
+4	David	2
+
+Write a query to display:
+
+EmployeeName	ManagerName
+Alice	NULL
+Bob	Alice
+Charlie	Alice
+David	Bob
+
+Hint: The manager is stored in the same table.
+
+Write the SQL query.
+*/
+
+SELECT E.EmployeeName,
+       M.EmployeeName AS ManagerName
+FROM Employees E
+LEFT JOIN Employees M
+ON E.ManagerID = M.EmployeeID;
+
+/*
