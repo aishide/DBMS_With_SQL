@@ -317,3 +317,12 @@ Expected output:
 CustomerName	TotalSpent
 Alice	800
 */
+
+SELECT C.CustomerName,
+       SUM(O.Amount) AS TotalSpent
+FROM Customers C
+INNER JOIN Orders O
+ON C.CustomerID = O.CustomerID
+GROUP BY C.CustomerID, C.CustomerName
+ORDER BY TotalSpent DESC
+LIMIT 1;
