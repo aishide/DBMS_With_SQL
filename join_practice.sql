@@ -176,3 +176,61 @@ LEFT JOIN Employees M
 ON E.ManagerID = M.EmployeeID;
 
 /*
+Employees
+EmployeeID	EmployeeName	ManagerID
+1	Alice	NULL
+2	Bob	1
+3	Charlie	1
+4	David	2
+
+Write a query to display only employees who have a manager.
+
+Expected output:
+
+EmployeeName	ManagerName
+Bob	Alice
+Charlie	Alice
+David	Bob
+
+Write the SQL query.
+*/
+
+SELECT E.EmployeeName,
+       M.EmployeeName AS ManagerName
+FROM Employees E
+INNER JOIN Employees M
+ON E.ManagerID = M.EmployeeID;
+
+/*
+Tables:
+
+Customers
+CustomerID	CustomerName
+1	Alice
+2	Bob
+3	Charlie
+Orders
+OrderID	CustomerID	Amount
+101	1	500
+102	1	300
+103	2	700
+
+Write a query to display:
+
+CustomerName	TotalAmount
+Alice	800
+Bob	700
+
+Customers with no orders should not appear.
+
+Write the SQL query.
+*/
+
+SELECT C.CustomerName,
+       SUM(O.Amount) AS TotalAmount
+FROM Customers C
+INNER JOIN Orders O
+ON C.CustomerID = O.CustomerID
+GROUP BY C.CustomerID, C.CustomerName;
+
+/*
