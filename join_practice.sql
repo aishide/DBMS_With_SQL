@@ -264,3 +264,34 @@ ON C.CustomerID = O.CustomerID
 WHERE O.OrderID IS NULL;
 
 /*
+Tables:
+
+Customers
+CustomerID	CustomerName
+1	Alice
+2	Bob
+3	Charlie
+Orders
+OrderID	CustomerID	Amount
+101	1	500
+102	1	300
+103	2	700
+
+Write a query to display:
+
+CustomerName	NumberOfOrders
+Alice	2
+Bob	1
+Charlie	0
+
+Notice that customers with no orders should still appear.
+
+Write the SQL query.
+*/
+
+SELECT C.CustomerName,
+       COUNT(O.OrderID) AS NumberOfOrders
+FROM Customers C
+LEFT JOIN Orders O
+ON C.CustomerID = O.CustomerID
+GROUP BY C.CustomerID, C.CustomerName;
