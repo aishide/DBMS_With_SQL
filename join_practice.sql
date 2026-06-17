@@ -295,3 +295,25 @@ FROM Customers C
 LEFT JOIN Orders O
 ON C.CustomerID = O.CustomerID
 GROUP BY C.CustomerID, C.CustomerName;
+
+/*
+Tables:
+
+Customers
+CustomerID	CustomerName
+1	Alice
+2	Bob
+3	Charlie
+Orders
+OrderID	CustomerID	Amount
+101	1	500
+102	1	300
+103	2	700
+
+Write a query to display the customer who has spent the most money.
+
+Expected output:
+
+CustomerName	TotalSpent
+Alice	800
+*/
