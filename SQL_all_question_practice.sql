@@ -1,0 +1,59 @@
+-- Students Table
+
+CREATE TABLE students (
+student_id INT,
+student_name VARCHAR(50),
+marks INT,
+course_id INT,
+mentor_id INT,
+email VARCHAR(100),
+admission_date DATE
+);
+
+-- Data
+
+INSERT INTO students VALUES
+(1,'Aarav',85,101,NULL,'aarav@gmail.com','2025-01-10'),
+(2,'Diya',92,102,1,'diya@gmail.com','2024-05-15'),
+(3,'Vivaan',70,101,1,'vivaan@gmail.com','2025-02-20'),
+(4,'Ananya',92,103,2,'ananya@gmail.com','2023-08-11'),
+(5,'Kabir',65,102,2,NULL,'2025-03-12'),
+(6,'Ishita',98,103,4,'ishita@gmail.com','2022-11-05'),
+(7,'Arjun',70,101,1,'arjun@gmail.com','2025-04-22'),
+(8,'Meera',80,102,2,'meera@gmail.com','2024-12-30'),
+(9,'Rohan',98,103,4,'rohan@gmail.com','2025-01-18'),
+(10,'Sanya',60,101,1,'sanya@gmail.com','2025-06-01');
+
+-- Courses Table
+
+CREATE TABLE courses (
+course_id INT,
+course_name VARCHAR(50)
+);
+
+-- Data
+INSERT INTO courses VALUES
+(101,'Python'),
+(102,'SQL'),
+(103,'Data Science');
+
+
+-- Find the 2nd Highest Marks.
+
+SELECT MAX(marks) AS [second highest marks] 
+FROM students
+WHERE marks < (SELECT MAX(marks) FROM students);
+
+-- Find Duplicate Student Records.
+
+SELECT student_id, COUNT(*) AS [Duplicate Student Record]
+FROM students
+GROUP BY student_id
+HAVING COUNT(*) > 1;
+
+-- Duplicate based on which column(s)? (email .. then )
+
+SELECT email, COUNT(*)
+FROM students
+GROUP BY email
+HAVING COUNT(*) > 1;
