@@ -232,4 +232,11 @@ SELECT student_id,
 FROM Students
 WHERE marks BETWEEN 70 AND 90;
 
---
+-- Show Student Name and Course Name.
+SELECT S.student_name,
+       C.course_name
+FROM Students S
+INNER JOIN Course C
+ON S.course_id = C.course_id;
+
+-- 
