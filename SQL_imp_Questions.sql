@@ -124,4 +124,26 @@ SELECT student_name
 FROM Students
 WHERE student_name LIKE 'A%';
 
+--Find Total Marks Course Wise.
+SELECT course_id,
+       SUM(marks) AS total_marks
+FROM Students
+GROUP BY course_id;
+
+--Find Students With Same Marks.
+SELECT marks, COUNT(*) AS student_count
+FROM Students
+GROUP BY marks
+HAVING COUNT(*) > 1;
+
+OR 
+
+SELECT s1.student_id,
+       s1.student_name,
+       s1.marks
+FROM Students s1
+JOIN Students s2
+ON s1.marks = s2.marks
+AND s1.student_id <> s2.student_id;
+
 --
