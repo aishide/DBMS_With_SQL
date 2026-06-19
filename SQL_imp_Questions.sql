@@ -38,6 +38,8 @@ INSERT INTO courses VALUES
 (103,'Data Science');
 
 
+
+
 -- Find the 2nd Highest Marks.
 
 SELECT MAX(marks) AS [second highest marks] 
@@ -57,3 +59,16 @@ SELECT email, COUNT(*)
 FROM students
 GROUP BY email
 HAVING COUNT(*) > 1;
+
+-- Delete Duplicate Student Records.
+DELETE s1
+FROM Students s1
+JOIN Students s2
+ON s1.studentID = s2.studentID
+WHERE s1.ID > s2.ID;
+
+--Find Students Scoring More Than Average Marks.
+SELECT student_name, marks
+FROM students
+WHERE marks > (SELECT AVG(marks) FROM students);
+
