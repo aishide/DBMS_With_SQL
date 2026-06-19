@@ -172,3 +172,20 @@ SELECT course,
 FROM Students
 GROUP BY course
 HAVING COUNT(student_id) > 10;
+
+-- Self Join – Find Students and Their Mentors.
+SELECT
+    s1.student_id,
+    s1.student_name,
+    m.student_name AS mentor_name
+FROM Students s1
+JOIN Students m
+ON s1.mentor_id = m.student_id;
+
+-- Find the 3rd Highest Marks. 
+SELECT DISTINCT marks
+FROM Students
+ORDER BY marks DESC
+LIMIT 1 OFFSET 2;
+
+--
