@@ -167,4 +167,8 @@ FROM Students
 WHERE student_id % 2 = 0;
 
 -- Find Courses Having More Than 10 Students.
-
+SELECT course,
+       COUNT(student_id) AS number_of_students_in_course
+FROM Students
+GROUP BY course
+HAVING COUNT(student_id) > 10;
