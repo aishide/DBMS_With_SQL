@@ -239,4 +239,12 @@ FROM Students S
 INNER JOIN Course C
 ON S.course_id = C.course_id;
 
+-- Find Courses Without Students.
+SELECT C.course_id,
+       C.course_name
+FROM Course C
+LEFT JOIN Students S
+ON C.course_id = S.course_id
+WHERE S.course_id IS NULL;
+
 -- 
