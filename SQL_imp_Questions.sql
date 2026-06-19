@@ -72,3 +72,34 @@ SELECT student_name, marks
 FROM students
 WHERE marks > (SELECT AVG(marks) FROM students);
 
+-- Find the Highest Marks in Each Course.
+SELECT course_id, MAX(marks) AS [Highest Marks]
+FROM students
+GROUP BY course_id;
+
+-- Find Students Admitted in 2025.
+SELECT student_id, student_name
+FROM Students
+WHERE YEAR(admission_date) = 2025;
+
+OR 
+
+SELECT student_id, student_name
+FROM Students
+WHERE admission_date > '2024-12-31';
+
+OR 
+
+SELECT student_id, student_name
+FROM Students
+WHERE admission_date >= '2025-01-01'
+  AND admission_date < '2026-01-01';
+
+-- Find Number of Students in Each Course.
+SELECT course_id,
+       COUNT(student_id) AS student_count
+FROM Students
+GROUP BY course_id;
+
+
+-- 
