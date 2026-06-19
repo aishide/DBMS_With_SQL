@@ -188,4 +188,39 @@ FROM Students
 ORDER BY marks DESC
 LIMIT 1 OFFSET 2;
 
---
+--Find Lowest Marks.
+SELECT MIN(marks) AS lowest_marks
+FROM Students;
+
+OR 
+
+SELECT student_id,
+       student_name,
+       marks
+FROM Students
+ORDER BY marks ASC
+LIMIT 1;
+
+
+if multiple students then : 
+SELECT student_id,
+       student_name,
+       marks
+FROM Students
+WHERE marks = (
+    SELECT MIN(marks)
+    FROM Students
+);
+
+-- Find Students Studying SQL.
+SELECT S.student_id,
+       S.student_name,
+       C.course_name
+FROM Students S
+JOIN Course C
+ON S.course_id = C.course_id
+WHERE C.course_name = 'SQL';
+
+-- Count Total Students.
+SELECT COUNT(*) AS total_students
+FROM Students;
