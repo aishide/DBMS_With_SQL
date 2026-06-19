@@ -102,4 +102,26 @@ FROM Students
 GROUP BY course_id;
 
 
--- 
+-- Find Students With NULL Email.
+SELECT student_id, student_name
+FROM Students
+WHERE email IS NULL;
+
+--Get Top 3 Highest Marks.
+SELECT student_id, student_name, marks
+FROM Students
+ORDER BY marks DESC
+LIMIT 3;
+
+--Find the top 3 highest distinct marks
+SELECT DISTINCT marks
+FROM Students
+ORDER BY marks DESC
+LIMIT 3;
+
+--Find Students Whose Name Starts With 'A'.
+SELECT student_name
+FROM Students
+WHERE student_name LIKE 'A%';
+
+--
