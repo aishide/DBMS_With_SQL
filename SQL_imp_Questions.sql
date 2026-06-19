@@ -224,3 +224,12 @@ WHERE C.course_name = 'SQL';
 -- Count Total Students.
 SELECT COUNT(*) AS total_students
 FROM Students;
+
+-- Find Students Having Marks Between 70 and 90.
+SELECT student_id,
+       student_name,
+       marks
+FROM Students
+WHERE marks BETWEEN 70 AND 90;
+
+--
