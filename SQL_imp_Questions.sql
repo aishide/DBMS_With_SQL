@@ -146,4 +146,25 @@ JOIN Students s2
 ON s1.marks = s2.marks
 AND s1.student_id <> s2.student_id;
 
---
+--Find Odd and Even Student Records.
+SELECT *,
+       CASE
+           WHEN student_id % 2 = 0 THEN 'Even'
+           ELSE 'Odd'
+       END AS record_type
+FROM Students;
+
+OR 
+
+for odd  :
+SELECT *
+FROM Students
+WHERE student_id % 2 = 1;
+
+for even :
+SELECT *
+FROM Students
+WHERE student_id % 2 = 0;
+
+-- Find Courses Having More Than 10 Students.
+
