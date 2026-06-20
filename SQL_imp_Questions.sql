@@ -247,4 +247,11 @@ LEFT JOIN Students S
 ON C.course_id = S.course_id
 WHERE S.course_id IS NULL;
 
--- 
+
+-- Find Students Without Mentors.
+SELECT student_id,
+       student_name
+FROM Students
+WHERE mentor_id IS NULL;
+
+--
