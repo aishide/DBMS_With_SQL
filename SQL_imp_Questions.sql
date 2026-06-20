@@ -304,3 +304,10 @@ ON C.course_id = S.course_id
 GROUP BY C.course_name
 ORDER BY average_marks DESC
 LIMIT 1;
+
+--Count Students Admitted in 2025.
+SELECT COUNT(*) AS students_admitted_2025
+FROM Students
+WHERE admission_date BETWEEN '2025-01-01' AND '2025-12-31';
+
+--
