@@ -326,4 +326,13 @@ WHERE marks = (
     FROM students
 );
 
+--Find Students Above Course Average Marks.
+SELECT student_id, student_name
+FROM students s
+WHERE marks > (
+    SELECT AVG(marks)
+    FROM students
+    WHERE course_id = s.course_id
+);
+
 --
