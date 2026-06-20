@@ -261,3 +261,12 @@ SELECT
 FROM Students S
 JOIN Students M
 ON S.mentor_id = M.student_id;
+
+--Find Students Under Mentor Aarav.
+SELECT S.student_id,
+       S.student_name,
+       M.student_name AS Mentor
+FROM Students S
+JOIN Students M
+ON S.mentor_id = M.student_id
+WHERE M.student_name = 'Aarav';
