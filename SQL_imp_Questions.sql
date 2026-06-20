@@ -254,4 +254,10 @@ SELECT student_id,
 FROM Students
 WHERE mentor_id IS NULL;
 
---
+--Find Students and Their Mentors.
+SELECT
+    S.student_name AS Student,
+    M.student_name AS Mentor
+FROM Students S
+JOIN Students M
+ON S.mentor_id = M.student_id;
