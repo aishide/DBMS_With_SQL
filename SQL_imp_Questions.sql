@@ -310,4 +310,12 @@ SELECT COUNT(*) AS students_admitted_2025
 FROM Students
 WHERE admission_date BETWEEN '2025-01-01' AND '2025-12-31';
 
+--Find Students Scoring Highest Marks.
+SELECT student_id, student_name
+FROM students
+WHERE marks = (
+    SELECT MAX(marks)
+    FROM students
+);
+
 --
