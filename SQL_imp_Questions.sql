@@ -279,4 +279,12 @@ JOIN Course C
 ON S.course_id = C.course_id
 GROUP BY C.course_name;
 
+-- Find Maximum Marks Course Wise.
+SELECT C.course,
+       MAX(S.marks) AS maximum_marks
+FROM Students S
+JOIN Course C
+ON S.course_id = C.course_id
+GROUP BY C.course;
+
 --
