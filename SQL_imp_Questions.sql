@@ -270,3 +270,13 @@ FROM Students S
 JOIN Students M
 ON S.mentor_id = M.student_id
 WHERE M.student_name = 'Aarav';
+
+--Find Average Marks Course Wise.
+SELECT C.course_name,
+       AVG(S.marks) AS average_marks
+FROM Students S
+JOIN Course C
+ON S.course_id = C.course_id
+GROUP BY C.course_name;
+
+--
