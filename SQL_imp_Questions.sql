@@ -287,4 +287,20 @@ JOIN Course C
 ON S.course_id = C.course_id
 GROUP BY C.course;
 
---
+--Find Minimum Marks Course Wise.
+SELECT C.course,
+       MIN(S.marks) AS minimum_marks
+FROM Students S
+JOIN Course C
+ON S.course_id = C.course_id
+GROUP BY C.course;
+
+-- Find Course with Highest Average Marks.
+SELECT C.course_name,
+       AVG(S.marks) AS average_marks
+FROM Course C
+JOIN Students S
+ON C.course_id = S.course_id
+GROUP BY C.course_name
+ORDER BY average_marks DESC
+LIMIT 1;
