@@ -318,4 +318,12 @@ WHERE marks = (
     FROM students
 );
 
+--Find Students Scoring Lowest Marks.
+SELECT student_id, student_name
+FROM students
+WHERE marks = (
+    SELECT MIN(marks)
+    FROM students
+);
+
 --
