@@ -437,4 +437,27 @@ JOIN students s2
     ON s1.mentor_id = s2.mentor_id
    AND s1.student_id < s2.student_id;
 
+-- Find Top Scorer in Every Course.
+SELECT *
+FROM (
+    SELECT *,
+           RANK() OVER (
+               PARTITION BY course_id
+               ORDER BY marks DESC
+           ) AS rnk
+    FROM students
+) t
+WHERE rnk = 1;
+
+
+OR 
+
+SELECT *
+FROM students s
+WHERE marks = (
+    SELECT MAX(marks)
+    FROM students
+    WHERE course_id = s.course_id
+);
+
 -- 
