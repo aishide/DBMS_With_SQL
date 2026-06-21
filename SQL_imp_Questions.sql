@@ -460,4 +460,9 @@ WHERE marks = (
     WHERE course_id = s.course_id
 );
 
+-- Find Students Who Never Provided Email.
+SELECT student_id, student_name
+FROM students
+WHERE email IS NULL;
+
 -- 
