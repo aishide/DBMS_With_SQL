@@ -398,4 +398,28 @@ FROM (
 ) t
 WHERE rnk <= 2;
 
--- 
+-- Calculate Running Total of Marks.
+SELECT
+    student_id,
+    student_name,
+    course_id,
+    marks,
+    SUM(marks) OVER (
+        PARTITION BY course_id
+        ORDER BY student_id
+    ) AS running_total
+FROM students;
+
+OR 
+
+SELECT
+    student_id,
+    student_name,
+    marks,
+    SUM(marks) OVER (
+        ORDER BY student_id
+    ) AS running_total
+FROM students;
+
+
+--
