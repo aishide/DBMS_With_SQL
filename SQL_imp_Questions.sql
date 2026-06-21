@@ -422,4 +422,9 @@ SELECT
 FROM students;
 
 
+--Find Students Admitted in Last 30 Days.
+SELECT *
+FROM students
+WHERE admission_date >= CURDATE() - INTERVAL 30 DAY;
+
 --
