@@ -353,4 +353,11 @@ HAVING COUNT(*) = (
     ) t
 );
 
+--Find Students Not Studying Python.
+SELECT S.student_id, S.student_name
+FROM students S
+JOIN courses C
+ON S.course_id = C.course_id
+WHERE C.course_name <> 'Python';
+
 --
