@@ -360,4 +360,16 @@ JOIN courses C
 ON S.course_id = C.course_id
 WHERE C.course_name <> 'Python';
 
---
+--Rank Students Course Wise.
+SELECT
+    student_id,
+    student_name,
+    course_id,
+    marks,
+    RANK() OVER (
+        PARTITION BY course_id
+        ORDER BY marks DESC
+    ) AS rank_no
+FROM students;
+
+----
