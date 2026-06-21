@@ -380,4 +380,22 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY marks DESC) AS row_num
 FROM Students;
 
---
+-- Find Top 2 Students From Each Course.
+SELECT *
+FROM (
+    SELECT
+        S.student_id,
+        S.student_name,
+        S.marks,
+        C.course_name,
+        DENSE_RANK() OVER (
+            PARTITION BY S.course_id
+            ORDER BY S.marks DESC
+        ) AS rnk
+    FROM students S
+    JOIN courses C
+        ON S.course_id = C.course_id
+) t
+WHERE rnk <= 2;
+
+-- 
