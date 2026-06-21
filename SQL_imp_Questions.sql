@@ -335,4 +335,22 @@ WHERE marks > (
     WHERE course_id = s.course_id
 );
 
+--Find Course Having Highest Number of Students.
+SELECT
+    C.course_id,
+    C.course_name,
+    COUNT(*) AS number_of_students
+FROM students S
+JOIN courses C
+    ON S.course_id = C.course_id
+GROUP BY C.course_id, C.course_name
+HAVING COUNT(*) = (
+    SELECT MAX(student_count)
+    FROM (
+        SELECT COUNT(*) AS student_count
+        FROM students
+        GROUP BY course_id
+    ) t
+);
+
 --
