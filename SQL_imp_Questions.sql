@@ -465,4 +465,20 @@ SELECT student_id, student_name
 FROM students
 WHERE email IS NULL;
 
--- 
+-- Find Marks Difference From Course Average.
+SELECT
+    student_name,
+    marks,
+    (
+        SELECT AVG(marks)
+        FROM students
+        WHERE course_id = s.course_id
+    ) AS course_avg,
+    marks - (
+        SELECT AVG(marks)
+        FROM students
+        WHERE course_id = s.course_id
+    ) AS marks_difference_from_average
+FROM students s;
+
+--
