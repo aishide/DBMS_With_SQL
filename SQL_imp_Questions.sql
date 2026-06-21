@@ -372,4 +372,12 @@ SELECT
     ) AS rank_no
 FROM students;
 
-----
+--Assign Row Number to Students Based on Marks.
+SELECT
+    student_id,
+    student_name,
+    marks,
+    ROW_NUMBER() OVER (ORDER BY marks DESC) AS row_num
+FROM Students;
+
+--
