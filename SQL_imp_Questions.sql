@@ -427,4 +427,14 @@ SELECT *
 FROM students
 WHERE admission_date >= CURDATE() - INTERVAL 30 DAY;
 
---
+--Find Students Sharing Same Mentor.
+SELECT
+    s1.student_name AS student1,
+    s2.student_name AS student2,
+    s1.mentor_id
+FROM students s1
+JOIN students s2
+    ON s1.mentor_id = s2.mentor_id
+   AND s1.student_id < s2.student_id;
+
+-- 
