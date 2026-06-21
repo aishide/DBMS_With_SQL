@@ -481,4 +481,12 @@ SELECT
     ) AS marks_difference_from_average
 FROM students s;
 
---
+-- Find Courses With Average Marks Above 80.
+SELECT
+    C.course_name,
+    AVG(S.marks) AS average_marks
+FROM students S
+JOIN courses C
+    ON S.course_id = C.course_id
+GROUP BY C.course_name
+HAVING AVG(S.marks) > 80;
