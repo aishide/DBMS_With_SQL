@@ -30,5 +30,23 @@ BEGIN
 END;
 /
 
+OUTPUT : PL/SQL procedure successfully completed.
+
+
+-- Displaying Output 
+
+SET SERVEROUTPUT ON;
+
+DECLARE 
+    var VARCHAR2(40) := 'I love to code';
+BEGIN 
+    DBMS_OUTPUT.PUT_LINE(var);
+END;
+/
+
+OUTPUT : 
+I love GeeksForGeeks
+PL/SQL procedure successfully completed.
+
 
 --
