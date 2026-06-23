@@ -74,3 +74,36 @@ new   3: b varchar2(30) := 'AISHI';
 
 
 (Oracle)
+
+
+--variable scope 
+
+DECLARE
+  global_var NUMBER; -- global variable
+BEGIN
+  -- PL/SQL code using global_var
+  DECLARE
+    local_var NUMBER; -- local variable
+  BEGIN
+    -- PL/SQL code using local_var and global_var
+  END;
+  -- Here you can't access local_var 
+END;
+
+
+
+
+-- a sample block 
+
+DECLARE
+  employee_record employees%ROWTYPE;
+BEGIN
+  -- Fetch data from the table into the record variable
+  SELECT * INTO employee_record FROM employees WHERE employee_id = 2;
+
+  -- Display the retrieved data
+  DBMS_OUTPUT.PUT_LINE('Employee ID: ' || employee_record.employee_id);
+  DBMS_OUTPUT.PUT_LINE('First Name: ' || employee_record.first_name);
+  DBMS_OUTPUT.PUT_LINE('Last Name: ' || employee_record.last_name);
+  DBMS_OUTPUT.PUT_LINE('Salary: ' || employee_record.salary);
+END;
