@@ -73,3 +73,4 @@ old   3: b varchar2(30) := &b;
 new   3: b varchar2(30) := 'AISHI';
 
 
+(Oracle)
