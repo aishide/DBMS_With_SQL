@@ -38,3 +38,15 @@ if (condition) then
 else 
     -- Executes this block if
     -- condition is false
+
+
+
+--NESTED if then 
+
+if (condition1) then
+   -- Executes when condition1 is true
+   if (condition2) then 
+     -- Executes when condition2 is true
+   end if; 
+end if;
+
