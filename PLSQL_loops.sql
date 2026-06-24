@@ -47,3 +47,51 @@ BEGIN
 END;
 /
 
+
+
+-- nested loop 
+
+syntax :
+
+-- Outer Loop
+LOOP
+     -- Code block
+     -- Inner Loop
+     LOOP
+         -- Inner loop code block
+         EXIT WHEN inner_condition;
+     END LOOP;
+   EXIT WHEN outer_condition;
+END LOOP;
+
+
+
+
+Example: 
+
+DECLARE
+  outer_counter NUMBER := 1;
+  inner_counter NUMBER := 1;
+BEGIN
+  FOR outer_counter IN 1..3 LOOP
+    DBMS_OUTPUT.PUT_LINE('Outer Loop - Iteration ' || outer_counter);
+    
+    FOR inner_counter IN 1..2 LOOP
+      DBMS_OUTPUT.PUT_LINE('Inner Loop - Iteration ' || inner_counter);
+    END LOOP;
+  END LOOP;
+END;
+/
+
+Output:
+
+Statement processed.
+Outer Loop - Iteration 1
+Inner Loop - Iteration 1
+Inner Loop - Iteration 2
+Outer Loop - Iteration 2
+Inner Loop - Iteration 1
+Inner Loop - Iteration 2
+Outer Loop - Iteration 3
+Inner Loop - Iteration 1
+Inner Loop - Iteration 2
