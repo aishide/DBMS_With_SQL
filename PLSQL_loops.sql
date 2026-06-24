@@ -17,3 +17,11 @@ LOOP
    END IF;
 END LOOP;
 
+
+
+-- Exit when consition  : 
+
+LOOP
+    -- Code block
+    EXIT WHEN condition;
+END LOOP;
