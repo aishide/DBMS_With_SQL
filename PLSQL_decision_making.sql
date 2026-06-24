@@ -50,3 +50,16 @@ if (condition1) then
    end if; 
 end if;
 
+
+
+-- IF THEN ELSIF-THEN-ELSE LADDER 
+
+if (condition) then
+    --statement
+elsif (condition) then
+    --statement
+.
+.
+else
+    --statement
+endif
