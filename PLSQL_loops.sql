@@ -25,3 +25,25 @@ LOOP
     -- Code block
     EXIT WHEN condition;
 END LOOP;
+
+
+--Example 
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+   a NUMBER := 1;
+
+BEGIN 
+   LOOP 
+
+   dbms_output.put_line('Aishi loves coding');
+   a := a+1;
+
+   Exit when a > 5;
+
+   END LOOP;
+
+END;
+/
+
