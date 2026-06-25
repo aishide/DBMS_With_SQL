@@ -34,3 +34,17 @@ INSERT INTO EMPLOYEE (EMP_ID, NAME, AGE, SALARY) VALUES
 
 */
 
+example 1  :
+
+DECLARE
+    v_salary NUMBER(8);
+BEGIN
+    SELECT SALARY INTO v_salary
+    FROM EMPLOYEE
+    WHERE  EMP_ID= 1;
+    DBMS_OUTPUT.PUT_LINE( v_salary);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Employee with EMP_ID=1 not found.');
+END;
+Output:
