@@ -59,3 +59,21 @@ INTO
 variable1, variable2, . . . . , variable_n  
 FROM table 
 WHERE expresion1, expression2, . . . . , expression_n;
+
+
+example 2 :
+
+DECLARE
+    v_salary NUMBER(8);
+    v_age NUMBER(8);
+BEGIN
+    SELECT SALARY, AGE
+    INTO v_salary, v_age
+    FROM EMPLOYEE
+    WHERE  EMP_ID= 1;
+    DBMS_OUTPUT.PUT_LINE(v_salary);
+    DBMS_OUTPUT.PUT_LINE( v_age);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Employee with EMP_ID=1 not found');
+END;
