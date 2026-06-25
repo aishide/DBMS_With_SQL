@@ -60,3 +60,38 @@ END;
 
 example :
 
+SET SERVEROUTPUT ON;
+
+BEGIN 
+    dbms_output.put_line('This is nested for loop');
+    dbms_output.new_line;
+
+    FOR counter1 IN 1..3 LOOP 
+    FOR counter2 IN 1..5 lOOP
+        dbms_output.put(counter2);
+
+    end loop;
+
+    dbms_output.new_line;
+
+end loop;
+
+end;
+/
+
+
+Output : 
+
+
+This is nested for loop
+
+12345
+12345
+12345
+
+
+PL/SQL procedure successfully completed.
+
+
+
+
