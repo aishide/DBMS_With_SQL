@@ -13,3 +13,29 @@ END LOOP;
 END;
 /
 
+
+
+
+Example :
+
+SET SERVEROUTPUT ON;
+
+DECLARE 
+    counter NUMBER := 1;
+
+BEGIN
+
+    DBMS_OUTPUT.PUT_LINE('This is the For loop :');
+    dbms_output.new_line;
+
+    FOR counter IN 1..5 LOOP
+        dbms_output.put_line('The counter number ' ||counter);
+    END LOOP;
+
+    dbms_output.new_line;
+    dbms_output.put_line ('This is the end of the loop');
+
+END;
+/
+
+
