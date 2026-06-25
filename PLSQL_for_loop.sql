@@ -110,3 +110,15 @@ END;
 
 example: 
 
+SET SERVEROUTPUT ON;
+
+BEGIN 
+    dbms_output.put_line('Use of reverse keyword');
+
+    FOR counter IN REVERSE 1..5 LOOP
+    dbms_output.put_line(counter);
+    END LOOP;
+
+END;
+/
+
