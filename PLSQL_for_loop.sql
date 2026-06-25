@@ -95,3 +95,18 @@ PL/SQL procedure successfully completed.
 
 
 
+-- Reverse keyword 
+
+syntax  :
+
+BEGIN
+FOR loop_variable IN REVERSE start_value .. end_value  LOOP
+    set_of_statements
+END LOOP;
+END;
+/
+
+
+
+example: 
+
