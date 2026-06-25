@@ -48,3 +48,14 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Employee with EMP_ID=1 not found.');
 END;
 Output:
+
+
+-- MORE THAN 1 VARIABLES
+
+Syntax :
+
+SELECT column1,  column2, . . . . , column_n 
+INTO
+variable1, variable2, . . . . , variable_n  
+FROM table 
+WHERE expresion1, expression2, . . . . , expression_n;
