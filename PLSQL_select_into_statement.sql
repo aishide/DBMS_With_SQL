@@ -12,7 +12,7 @@ WHERE expresion1, expression2, . . . . , expression_n;
 
 
 
-/*
+Query :
 
 CREATE TABLE EMPLOYEE (
     EMP_ID INT PRIMARY KEY,
@@ -32,7 +32,6 @@ INSERT INTO EMPLOYEE (EMP_ID, NAME, AGE, SALARY) VALUES
 (009, 'Leo', 20, 15000),
 (010, 'Tom', 21, 16000);
 
-*/
 
 example 1  :
 
