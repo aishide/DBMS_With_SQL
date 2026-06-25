@@ -39,3 +39,24 @@ END;
 /
 
 
+-- Nested For Loop 
+
+syntax  :
+
+BEGIN
+          --outer loop 
+FOR loop_variable1 IN start_value1 ..end_value1 LOOP
+          --inner loop
+FOR  loop_variable2 IN start_value2 ..end_value2 LOOP
+          --set of statements 
+END LOOP;
+          --inner loop end
+END LOOP;
+          --outer loop end
+END;
+/
+
+
+
+example :
+
