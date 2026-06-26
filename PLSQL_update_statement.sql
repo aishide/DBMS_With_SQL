@@ -53,3 +53,28 @@ BEGIN
 END;
 /
 
+
+
+Example 3 :
+
+BEGIN
+  UPDATE employees e
+  SET e.salary = (
+    SELECT sa.new_salary
+    FROM salary_adjustments sa
+    WHERE sa.employee_id = e.employee_id
+  )
+  WHERE EXISTS (
+    SELECT 1
+    FROM salary_adjustments sa
+    WHERE sa.employee_id = e.employee_id
+  );
+
+  COMMIT; -- Commit the changes to make them permanent
+
+  DBMS_OUTPUT.PUT_LINE('Employee salaries updated from salary_adjustments table.');
+END;
+/
+
+
+
