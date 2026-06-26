@@ -21,3 +21,8 @@ CREATE INDEX idx_Stud_ID ON Students(Stud_ID);
 
 Display Created Index from Database:  
 SHOW INDEX FROM Students;
+
+
+delete the ccreated index  :
+DROP INDEX idx_Stud_ID ON Students;
+
