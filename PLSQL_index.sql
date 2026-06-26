@@ -26,3 +26,17 @@ SHOW INDEX FROM Students;
 delete the ccreated index  :
 DROP INDEX idx_Stud_ID ON Students;
 
+
+
+
+
+
+
+
+
+
+Example 2: 
+
+CREATE INDEX idx_Emp_ID ON Employee(Emp_ID);
+
+DROP INDEX idx_Emp_ID ON Employee;
