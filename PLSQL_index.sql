@@ -18,3 +18,6 @@ CREATE INDEX index_name ON table_name (column1, column2, ...);
 Example:
 CREATE INDEX idx_Stud_ID ON Students(Stud_ID);
 
+
+Display Created Index from Database:  
+SHOW INDEX FROM Students;
