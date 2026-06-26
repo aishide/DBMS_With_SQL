@@ -27,3 +27,13 @@ WHERE emp_id = 3;
 SELECT name, department, salary
 FROM employees
 WHERE department = 'IT' AND salary > 6500; 
+
+-- IN operator 
+SELECT name, department, salary
+FROM employees
+WHERE department IN ('IT', 'Finance')
+
+--Between 
+SELECT name, department, salary
+FROM employees
+WHERE salary BETWEEN 5500 AND 7000;
