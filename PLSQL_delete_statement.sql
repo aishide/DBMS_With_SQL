@@ -67,3 +67,9 @@ DELETE FROM employeeDetails
 WHERE department = 'HR' AND employee_id = 101;
 
 
+DELETE FROM employeeDetails e
+WHERE NOT EXISTS (
+    SELECT 1 FROM department d
+    WHERE d.department = e.department
+);
+
