@@ -19,3 +19,6 @@ UPDATE employees
 SET salary = salary * 1.10
 WHERE department = 'HR';
 
+-- Where clause in delete statement 
+DELETE FROM employees
+WHERE emp_id = 3;
