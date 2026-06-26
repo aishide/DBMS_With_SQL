@@ -22,3 +22,8 @@ WHERE department = 'HR';
 -- Where clause in delete statement 
 DELETE FROM employees
 WHERE emp_id = 3;
+
+-- multiple conditions 
+SELECT name, department, salary
+FROM employees
+WHERE department = 'IT' AND salary > 6500; 
