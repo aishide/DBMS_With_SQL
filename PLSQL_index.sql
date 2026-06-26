@@ -11,3 +11,6 @@ SYNTAX :
 CREATE INDEX Index_Name ON Table_Name ( Column_Name);  
 
 
+composote index syntax:
+CREATE INDEX index_name ON table_name (column1, column2, ...);
+
