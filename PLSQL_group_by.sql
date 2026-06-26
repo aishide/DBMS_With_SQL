@@ -36,7 +36,19 @@ INSERT INTO student (name, course_fee, course) VALUES
 SELECT name, SUM(course_fee) FROM student 
 GROUP BY name;
 
+
 SELECT Name, course, Count(*)
 FROM Student
 GROUP BY Course, Name;
+
+
+SELECT Name, MIN(course_fee) AS "Lowest course_fee"
+FROM student
+GROUP BY name;
+
+
+SELECT course, MAX(course_fee) AS "Highest course_fee"
+FROM student
+GROUP BY course;
+
 
