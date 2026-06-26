@@ -37,3 +37,19 @@ END;
 /
 
 
+
+
+Example 2 : 
+
+BEGIN
+  UPDATE employees
+  SET last_name = 'Williams',
+      salary = salary * 1.15
+  WHERE employee_id = 1003;
+
+  COMMIT; -- Commit the changes to make them permanent
+
+  DBMS_OUTPUT.PUT_LINE('Last name and salary updated for employee 1003.');
+END;
+/
+
