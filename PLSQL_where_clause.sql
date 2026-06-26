@@ -14,4 +14,8 @@ SELECT name, department, salary
 FROM employees
 WHERE department = 'IT';
 
---
+--Where clause in Update statement 
+UPDATE employees
+SET salary = salary * 1.10
+WHERE department = 'HR';
+
