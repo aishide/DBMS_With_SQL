@@ -108,3 +108,54 @@ WHEN exception_name THEN
 -- Exception handling code
 END;
 
+
+example  :
+
+DECLARE  
+fk_violation EXCEPTION; 
+ PRAGMA EXCEPTION_INIT(fk_violation, -2292);
+BEGIN  
+DELETE FROM departments WHERE department_id = 10;
+EXCEPTION 
+ WHEN fk_violation THEN  
+  DBMS_OUTPUT.PUT_LINE('Error: Cannot delete department. Employees exist in it.');
+END;
+
+Output:
+Error: Cannot delete department. Employees exist in it.
+
+
+
+
+
+
+Example  :
+
+DECLARE  
+ x INT := &x;  -- Runtime input 
+  y INT := &y; 
+  div_r FLOAT;  
+ exp1 EXCEPTION;  -- For division by zero   exp2
+ EXCEPTION; 
+ -- For y > x
+BEGIN   IF y = 0 THEN 
+     RAISE exp1; 
+  ELSIF y > x THEN 
+     RAISE exp2;   
+ELSE     
+ div_r := x / y;    
+  DBMS_OUTPUT.PUT_LINE('The result is ' || div_r);   
+END IF;
+EXCEPTION   
+WHEN exp1 THEN      
+DBMS_OUTPUT.PUT_LINE('Error: Division by zero is not allowed'); 
+  WHEN exp2 THEN   
+   DBMS_OUTPUT.PUT_LINE('Error: y is greater than x, please check the input');
+END;
+
+
+Output:
+ZERO_DIVIDE: Cannot divide by zero
+
+
+
