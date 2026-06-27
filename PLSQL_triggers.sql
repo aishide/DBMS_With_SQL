@@ -102,3 +102,17 @@ DELETE FROM Geeks WHERE Id = 3;
 
 
 
+-- Before update trigger :
+
+-- BEFORE UPDATE trigger
+CREATE OR REPLACE TRIGGER BEFORE_UPDATE
+BEFORE UPDATE ON Geeks
+FOR EACH ROW
+BEGIN
+    INSERT INTO Affect (Id, Name, Score)
+    VALUES (:OLD.Id, :OLD.Name, :OLD.Score);
+END;
+/
+UPDATE Geeks SET Score = 900 WHERE Id = 5;
+SELECT * FROM Affect; 
+SELECT * FROM Geeks; 
