@@ -159,3 +159,30 @@ ZERO_DIVIDE: Cannot divide by zero
 
 
 
+
+
+Example 2 :
+DECLARE  
+ myex EXCEPTION;
+   n NUMBER := 10;
+BEGIN 
+  FOR i IN 1..n LOOP
+      DBMS_OUTPUT.PUT_LINE(i*i);    
+  IF i*i = 36 THEN      
+   RAISE myex;     
+ END IF;   
+END LOOP;
+EXCEPTION  
+ WHEN myex THEN   
+   RAISE_APPLICATION_ERROR(-20015, 'Welcome to GeeksForGeeks');
+END;
+
+
+Output:
+1
+4
+9
+16
+25
+36
+Error Report:ORA-20015: Welcome to GeeksForGeeksORA-06512: at line 13
