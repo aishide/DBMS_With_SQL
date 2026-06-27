@@ -23,13 +23,8 @@ Display Created Index from Database:
 SHOW INDEX FROM Students;
 
 
-delete the ccreated index  :
+delete the created index  :
 DROP INDEX idx_Stud_ID ON Students;
-
-
-
-
-
 
 
 
