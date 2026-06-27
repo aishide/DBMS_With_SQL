@@ -116,3 +116,63 @@ END;
 UPDATE Geeks SET Score = 900 WHERE Id = 5;
 SELECT * FROM Affect; 
 SELECT * FROM Geeks; 
+
+
+
+
+
+
+
+
+
+Conditional Trigger: After
+
+SET SERVEROUTPUT ON;
+
+
+CREATE TABLE Geeks (
+    Id INT,
+    Name VARCHAR2(20),
+    Score INT
+);
+
+
+-- Insert into Geeks Table 
+INSERT INTO Geeks (Id, Name, Score) VALUES (1, 'Sam', 800);
+INSERT INTO Geeks (Id, Name, Score) VALUES (2, 'Ram', 699);
+INSERT INTO Geeks (Id, Name, Score) VALUES (3, 'Tom', 250);
+INSERT INTO Geeks (Id, Name, Score) VALUES (4, 'Om', 350);
+INSERT INTO Geeks (Id, Name, Score) VALUES (5, 'Jay', 750);
+-- insert statement should be written for each entry in Oracle Sql Developer
+
+
+CREATE TABLE Affect (
+    Id INT,
+    Name VARCHAR2(20),
+    Score INT
+);
+SELECT * FROM Geeks; 
+-- AFTER DELETE trigger
+CREATE OR REPLACE TRIGGER AFTER_DELETE
+AFTER DELETE ON Geeks
+FOR EACH ROW
+BEGIN
+    INSERT INTO Affect (Id, Name, Score)
+    VALUES (:OLD.Id, :OLD.Name, :OLD.Score);
+END;
+/
+DELETE FROM Geeks WHERE Id = 4;
+
+
+-- AFTER UPDATE trigger
+CREATE OR REPLACE TRIGGER AFTER_UPDATE
+AFTER UPDATE ON Geeks
+FOR EACH ROW
+BEGIN
+    INSERT INTO Affect (Id, Name, Score)
+    VALUES (:NEW.Id, :NEW.Name, :NEW.Score);
+END;
+/
+UPDATE Geeks SET Score = 1050 WHERE Id = 5;
+SELECT * FROM Affect; 
+SELECT * FROM Geeks; 
