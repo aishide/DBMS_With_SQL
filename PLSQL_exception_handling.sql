@@ -91,3 +91,20 @@ INSERT INTO geeks VALUES (2, 'Praveen', 97);
 INSERT INTO geeks VALUES (3, 'Jessie', 99);
 
 
+
+
+
+2. Unnamed System Exception:
+
+Syntax : 
+
+DECLARE
+  exception_name EXCEPTION; 
+ PRAGMA EXCEPTION_INIT(exception_name, -error_code);
+BEGIN  
+-- Code that may raise the unnamed exception 
+EXCEPTION  
+WHEN exception_name THEN    
+-- Exception handling code
+END;
+
