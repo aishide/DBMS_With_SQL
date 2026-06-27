@@ -123,8 +123,6 @@ SELECT * FROM Geeks;
 
 
 
-
-
 Conditional Trigger: After
 
 SET SERVEROUTPUT ON;
