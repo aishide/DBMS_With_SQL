@@ -180,3 +180,130 @@ END;
 
 
 Assigning records :
+
+-- Assigning values to fields of emp_rec
+emp_rec.emp_id := 101;
+emp_rec.emp_name := 'John Doe';
+emp_rec.emp_salary := 50000;
+
+-- Assigning emp_rec to emp_rec1
+emp_rec1 := emp_rec;
+
+
+
+
+
+
+
+
+
+
+Records with INSERT Statement :
+
+DECLARE
+    -- Define a record type
+    TYPE employee_record_type IS RECORD (
+        emp_id   employees.employee_id%TYPE,
+        emp_name employees.employee_name%TYPE,
+        emp_salary employees.salary%TYPE
+    );
+
+    -- Declare a record variable
+    emp_rec employee_record_type;
+
+BEGIN
+    -- Assign values to the record fields
+    emp_rec.emp_id := 101;
+    emp_rec.emp_name := 'John Doe';
+    emp_rec.emp_salary := 50000;
+
+    -- Insert data into the employees table using the record
+    INSERT INTO employees (employee_id, employee_name, salary)
+    VALUES (emp_rec.emp_id, emp_rec.emp_name, emp_rec.emp_salary);
+
+    -- Commit the transaction
+    COMMIT;
+END;
+/
+
+
+
+
+
+
+
+Records with UPDATE Statement :
+
+DECLARE
+    -- Define a record type
+    TYPE employee_record_type IS RECORD (
+        emp_id   employees.employee_id%TYPE,
+        emp_name employees.employee_name%TYPE,
+        emp_salary employees.salary%TYPE
+    );
+
+    -- Declare a record variable
+    emp_rec employee_record_type;
+
+BEGIN
+    -- Assign values to the record fields
+    emp_rec.emp_id := 101;
+    emp_rec.emp_name := 'John Doe';
+    emp_rec.emp_salary := 55000; -- Updated salary
+
+    -- Update data in the employees table using the record
+    UPDATE employees
+    SET employee_name = emp_rec.emp_name,
+        salary = emp_rec.emp_salary
+    WHERE employee_id = emp_rec.emp_id;
+
+    -- Commit the transaction
+    COMMIT;
+END;
+/
+
+
+
+
+
+
+Nested Record :
+
+DECLARE
+    -- Define a nested record type
+    TYPE address_record_type IS RECORD (
+        street_address VARCHAR2(100),
+        city VARCHAR2(50),
+        state VARCHAR2(50),
+        postal_code VARCHAR2(20)
+    );
+
+    TYPE employee_record_type IS RECORD (
+        emp_id   INTEGER,
+        emp_name VARCHAR2(100),
+        emp_address address_record_type -- Nested record type
+    );
+
+    -- Declare a record variable
+    emp_rec employee_record_type;
+
+BEGIN
+    -- Assign values to the fields of the nested record
+    emp_rec.emp_id := 101;
+    emp_rec.emp_name := 'John Doe';
+    emp_rec.emp_address.street_address := '123 Main St';
+    emp_rec.emp_address.city := 'New York';
+    emp_rec.emp_address.state := 'NY';
+    emp_rec.emp_address.postal_code := '10001';
+
+    -- Output the nested record data
+    DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_rec.emp_id);
+    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || emp_rec.emp_name);
+    DBMS_OUTPUT.PUT_LINE('Street Address: ' || emp_rec.emp_address.street_address);
+    DBMS_OUTPUT.PUT_LINE('City: ' || emp_rec.emp_address.city);
+    DBMS_OUTPUT.PUT_LINE('State: ' || emp_rec.emp_address.state);
+    DBMS_OUTPUT.PUT_LINE('Postal Code: ' || emp_rec.emp_address.postal_code);
+END;
+/
+
+
