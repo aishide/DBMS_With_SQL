@@ -31,3 +31,40 @@ on demand. Such a user-defined cursor is known as an Explicit Cursor.
 
 
 
+
+-- Explicit Cursor  :
+
+Syntax for creating cursor : 
+
+CURSOR cursor_name IS select_statement;
+
+
+
+
+Here are four steps in using an Explicit Cursor.
+
+a) DECLARE the cursor in the Declaration section.
+b) OPEN the cursor in the Execution Section.
+c) FETCH the data from the cursor into PL/SQL variables or records in the Execution Section.
+d) CLOSE the cursor in the Execution Section before you end the PL/SQL Block.
+
+
+
+
+Syntax : 
+General Syntax of using an explicit cursor in PL/SQL is:
+
+DECLARE
+  variables;
+  records;
+  CURSOR cursor_name IS select_statement;
+BEGIN
+  OPEN cursor_name;
+  LOOP
+    FETCH cursor_name INTO variables OR records;
+    EXIT WHEN cursor_name%NOTFOUND;
+    
+    process the records;
+  END LOOP;
+  CLOSE cursor_name;
+END;
