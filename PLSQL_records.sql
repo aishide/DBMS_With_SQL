@@ -106,3 +106,77 @@ print("Age:", Human1.age)
 print("Address:", Human1.address)
 
 
+
+Referencing a Records Field :
+
+
+DECLARE
+    -- Declare a record based on a table structure
+    TYPE employee_record_type IS RECORD (
+        emp_id   employees.employee_id%TYPE,
+        emp_name employees.employee_name%TYPE,
+        emp_salary employees.salary%TYPE
+    );
+-- Declare a record variable
+    employee_rec employee_record_type;
+
+-- Assign values to the record fields
+employee_rec.emp_id := 101;
+employee_rec.emp_name := 'John Doe';
+employee_rec.emp_salary := 50000;
+
+-- Retrieve values from the record fields
+DBMS_OUTPUT.PUT_LINE('Employee ID: ' || employee_rec.emp_id);
+DBMS_OUTPUT.PUT_LINE('Employee Name: ' || employee_rec.emp_name);
+DBMS_OUTPUT.PUT_LINE('Employee Salary: ' || employee_rec.emp_salary);
+
+
+
+
+
+
+Manipulate Record Fields: We can also perform the calculations and operations with the record fields.
+
+-- Increase employee salary by 10%
+employee_rec.emp_salary := employee_rec.emp_salary * 1.1;
+
+
+
+
+Pass Record as Parameter: Records are passed the parameters to the functions or procedures allowing the work with the structured data with the subprograms.
+
+-- Example of a procedure accepting a record parameter
+PROCEDURE print_employee_details(emp_record IN employee_record_type) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_record.emp_id);
+    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || emp_record.emp_name);
+    DBMS_OUTPUT.PUT_LINE('Employee Salary: ' || emp_record.emp_salary);
+END;
+
+
+
+
+
+
+Cursor Fetch Into Record: We can retrieve the data from the cursor directly into the variables of the record.
+
+DECLARE
+    CURSOR emp_cursor IS
+        SELECT employee_id, employee_name, salary
+        FROM employees;
+     emp_rec employee_record_type;
+BEGIN
+    OPEN emp_cursor;
+    FETCH emp_cursor INTO emp_rec;
+    CLOSE emp_cursor;
+    DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_rec.emp_id);
+    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || emp_rec.emp_name);
+    DBMS_OUTPUT.PUT_LINE('Employee Salary: ' || emp_rec.emp_salary);
+END;
+
+
+
+
+
+
+Assigning records :
