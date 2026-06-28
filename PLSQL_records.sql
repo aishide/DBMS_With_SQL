@@ -22,7 +22,7 @@ In databases, records are called rows in a table, and we can interact with them 
 
 
 
--- Example: Declaring and Using a Table-Based Record
+-- 1. Declaring and Using a Table-Based Record
 
 record Human {
   id: Integer,
@@ -47,3 +47,40 @@ Human2 = Human {
 }
 
 
+
+
+-- 2. Declaring Cursor-Based Records
+
+DECLARE
+    -- Declare a cursor to fetch data
+    CURSOR employee_cursor IS
+        SELECT employee_id, employee_name, salary
+        FROM employees
+        WHERE department_id = 10;
+
+    -- Declare a record type based on the cursor's query structure
+    TYPE employee_record_type IS RECORD (
+        emp_id   employees.employee_id%TYPE,
+        emp_name employees.employee_name%TYPE,
+        emp_salary employees.salary%TYPE
+    );
+
+    -- Declare a variable of the record type
+    employee_rec employee_record_type;
+
+BEGIN
+    -- Open the cursor
+    OPEN employee_cursor;
+
+    -- Fetch data from the cursor and process each record
+    LOOP
+        FETCH employee_cursor INTO employee_rec;
+        EXIT WHEN employee_cursor%NOTFOUND;
+
+        -- Process the record (for example, print the values)
+        DBMS_OUTPUT.PUT_LINE('Employee ID: ' || employee_rec.emp_id || ', Name: ' || employee_rec.emp_name || ', Salary: ' || employee_rec.emp_salary);
+    END LOOP;
+
+    -- Close the cursor
+    CLOSE employee_cursor;
+END;
