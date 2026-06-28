@@ -1,0 +1,245 @@
+-- AISHI DE 
+
+
+PLSQL records 
+
+1. Table-Based Records (%ROWTYPE) ⭐ Most Common
+Simple idea:
+
+👉 "Create a record that looks exactly like one row of a database table."
+
+Suppose your table is:
+
+Students
+----------------------------------
+StudentID | Name | Age | Marks
+----------------------------------
+101       | Aishi| 20  | 95
+102       | Rahul| 21  | 88
+
+When you write
+
+student_rec Students%ROWTYPE;
+
+Oracle automatically creates a record like this:
+
+student_rec
+-------------------
+StudentID
+Name
+Age
+Marks
+
+Now you can store one complete row.
+
+Example:
+
+SELECT *
+INTO student_rec
+FROM Students
+WHERE StudentID = 101;
+
+Now
+
+student_rec.StudentID = 101
+student_rec.Name      = Aishi
+student_rec.Age       = 20
+student_rec.Marks     = 95
+Think of it like
+
+The table is the blueprint, and %ROWTYPE copies that blueprint.
+
+
+
+
+
+2. Cursor-Based Records (cursor_name%ROWTYPE)
+Simple idea:
+
+👉 "Create a record based on the columns returned by a cursor."
+
+Suppose your cursor is
+
+CURSOR c1 IS
+SELECT Name, Marks
+FROM Students;
+
+Notice the cursor returns only 2 columns:
+
+Name
+Marks
+
+Now declare
+
+student_rec c1%ROWTYPE;
+
+The record becomes
+
+student_rec
+--------------
+Name
+Marks
+
+Notice it does NOT contain StudentID or Age, because the cursor didnt select them.
+
+When you fetch:
+
+FETCH c1 INTO student_rec;
+
+it stores one row.
+
+For example:
+
+Name  = Aishi
+Marks = 95
+Think of it like
+
+The cursor decides which columns you need, and the record copies only those.
+
+
+
+
+
+
+3. Programmer-Defined Records
+Simple idea:
+
+👉 "You decide what fields the record should have."
+
+Maybe there isnt even a table.
+
+You create your own record.
+
+TYPE StudentRec IS RECORD
+(
+    name VARCHAR2(50),
+    city VARCHAR2(30),
+    hobby VARCHAR2(30)
+);
+
+Now the record looks like
+
+student
+-----------------
+Name
+City
+Hobby
+
+Assign values:
+
+student.name := 'Aishi';
+student.city := 'Nagpur';
+student.hobby := 'Guitar';
+
+Output:
+
+Name : Aishi
+City : Nagpur
+Hobby: Guitar
+Think of it like
+
+You are designing your own form from scratch.
+
+
+
+
+
+
+
+
+
+
+
+4. Nested Records
+Simple idea:
+
+👉 "A record inside another record."
+
+Imagine an employee has personal details and address.
+
+Instead of putting everything in one big record:
+
+Employee
+------------------------
+Name
+Age
+Street
+City
+State
+Pincode
+
+You make another record for Address.
+
+Address Record
+-------------------
+Street
+City
+State
+Pincode
+
+Then place it inside Employee.
+
+Employee Record
+--------------------
+Name
+Age
+Address
+      |
+      +-- Street
+      +-- City
+      +-- State
+      +-- Pincode
+
+PL/SQL example:
+
+TYPE AddressRec IS RECORD
+(
+    city VARCHAR2(20),
+    state VARCHAR2(20)
+);
+
+TYPE EmployeeRec IS RECORD
+(
+    name VARCHAR2(30),
+    age NUMBER,
+    address AddressRec
+);
+
+Now you can write
+
+employee.name := 'Aishi';
+
+employee.address.city := 'Nagpur';
+
+employee.address.state := 'Maharashtra';
+
+Notice the two dots:
+
+employee
+   |
+   +-- address
+          |
+          +-- city
+
+
+
+
+Quick Comparison : 
+
+Type	Based on	You define fields?	Example
+Table-Based Record	A table (%ROWTYPE)	❌ No	Copies all columns of the Students table
+
+Cursor-Based Record	A cursor (cursor%ROWTYPE)	❌ No	Copies only the columns returned by the cursor
+Programmer-Defined Record	Your own TYPE...RECORD	✅ Yes	Name, City, Hobby
+
+Nested Record	Another record	✅ Yes	Employee record contains an Address record
+An easy way to remember
+
+
+
+
+
+Table-Based Record → Copy a table row.
+Cursor-Based Record → Copy a cursors result row.
+Programmer-Defined Record → Build your own record.
+Nested Record → Put one record inside another record.
