@@ -84,3 +84,25 @@ BEGIN
     -- Close the cursor
     CLOSE employee_cursor;
 END;
+
+
+
+
+-- 3. Programmer-Defined Record (User-Defined)
+
+# Define a programmer-defined record representing a person
+class Human:
+    def __init__(self, name, age, address):
+        self.name = name
+        self.age = age
+        self.address = address
+
+# Create an instance of the Person record
+Human1 = Human("Jagan Malla", 30, "Runku Street")
+
+# Access fields of the record
+print("Name:", Human1.name)
+print("Age:", Human1.age)
+print("Address:", Human1.address)
+
+
