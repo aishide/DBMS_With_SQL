@@ -1,4 +1,6 @@
 -- AISHI DE 
+-- loop in SQL 
+
 
 syntax 
 
